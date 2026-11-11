@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="es-ES">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1c1d20">
+<title>Movilidad matutina · Fuerza en Casa 50+</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;600;700&display=swap">
+<style>
+:root{
+ --bg:#1c1d20; --card:#26282d; --card2:#2b2d32; --line:#33363c; --ink:#f3efe6; --mute:#a9a59c;
+ --amb:#f0a63a; --amb2:#ffc46b; --ok:#7ad38f;
+ --disp:"Bricolage Grotesque",Inter,system-ui,sans-serif; --ui:Inter,system-ui,sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--ui);font-size:18px;line-height:1.45;-webkit-font-smoothing:antialiased}
+.app{max-width:520px;margin:0 auto;padding:16px 16px calc(28px + env(safe-area-inset-bottom))}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+h1,h2,h3{font-family:var(--disp);font-weight:800;line-height:1.12;margin:0}
+p{margin:0}
+.scr{display:none}.scr.on{display:block;animation:in .25s ease}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.marca{font-family:var(--disp);font-weight:800;color:var(--amb);font-size:15px;letter-spacing:.08em}
+.sub{color:var(--mute);font-size:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:14px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:60px;padding:14px 18px;border-radius:16px;background:var(--amb);color:#1c1d20;font-weight:800;font-size:19px;text-align:center}
+.btn:active{transform:scale(.99)}
+.btn.sec{background:var(--card2);color:var(--ink);border:1px solid var(--line)}
+.btn svg{width:22px;height:22px}
+.nums{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.num{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center}
+.num b{display:block;font-family:var(--disp);font-weight:800;font-size:40px;line-height:1;color:var(--amb)}
+.num span{font-size:14px;color:var(--mute)}
+.cad{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;margin-top:12px}
+.cad i{aspect-ratio:1;border-radius:7px;border:1px solid var(--line);background:#1f2024}
+.cad i.on{background:var(--amb);border-color:var(--amb)}
+.hoy{display:flex;gap:10px;align-items:center;margin-top:14px;padding:12px 14px;border-radius:14px;background:#232a25;border:1px solid #3f6a4a;color:var(--ok);font-weight:700;font-size:16px}
+.hoy svg{width:22px;height:22px;flex:0 0 22px}
+.lista{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+.lista li{display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:16px;color:var(--mute)}
+.lista li b{color:var(--ink)}
+.lista .n{width:28px;height:28px;border-radius:9px;background:var(--card2);display:grid;place-items:center;font-family:var(--disp);font-weight:800;color:var(--amb);font-size:15px}
+/* reproductor */
+.ptop{display:flex;justify-content:space-between;align-items:center}
+.ptop button{font-size:15px;font-weight:700;color:var(--mute);padding:8px 2px}
+.pasos{display:flex;gap:5px;margin:10px 0 12px}
+.pasos i{flex:1;height:6px;border-radius:9px;background:var(--card2)}
+.pasos i.ok{background:var(--amb)}
+.pasos i.act{background:var(--amb2)}
+.lugar{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--amb);background:rgba(240,166,58,.12);border-radius:99px;padding:5px 10px}
+.pimg{display:block;width:100%;max-width:300px;aspect-ratio:928/1152;object-fit:cover;border-radius:18px;margin:12px auto;background:#f3ead8}
+.pnom{font-size:30px;margin-top:4px}
+.pcomo{font-size:18px;margin-top:6px}
+.reloj{position:relative;width:132px;height:132px;margin:16px auto 6px}
+.reloj svg{width:132px;height:132px;transform:rotate(-90deg)}
+.reloj circle{fill:none;stroke-width:10}
+.reloj .tr{stroke:var(--card2)}
+.reloj .pr{stroke:var(--amb);stroke-linecap:round;transition:stroke-dashoffset 1s linear}
+.reloj b{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--disp);font-weight:800;font-size:38px}
+.ctrl{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:8px;margin-top:12px}
+.ctrl .btn{min-height:56px;font-size:16px;padding:10px}
+.fin{text-align:center;padding-top:30px}
+.fin .sello{width:120px;height:120px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;background:var(--amb);color:#1c1d20}
+.fin .sello svg{width:60px;height:60px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 5v14l12-7z" fill="currentColor"/></symbol>
+ <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 3 5 14h6l-1 7 8-11h-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+ <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+<div class="app">
+ <section class="scr on" id="s-ini"></section>
+ <section class="scr" id="s-play"></section>
+ <section class="scr" id="s-fin"></section>
+</div>
+<style>
+#gate{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:20px}
+#gate.off{display:none}
+.gbox{width:100%;max-width:420px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px 22px;text-align:center}
+.gbox h1{margin:0;font-family:var(--disp);font-weight:800;font-size:30px;line-height:1.1;color:var(--amb)}
+.gbox p{margin:12px 0 18px;font-size:17px;line-height:1.45}
+.gbox input{width:100%;font:inherit;font-size:20px;font-weight:700;text-align:center;padding:16px;border:1px solid var(--line);border-radius:14px;background:#1c1d20;color:var(--ink);outline:none}
+.gbox input:focus{box-shadow:0 0 0 3px rgba(240,166,58,.45)}
+.gbox .btn{margin-top:12px}
+.gerr{min-height:22px;margin-top:10px;color:#ff8a7a;font-weight:700;font-size:15px}
+.gbox small{display:block;margin-top:10px;font-size:14px;opacity:.7}
+</style>
+<div id="gate">
+ <form class="gbox" id="gForm" autocomplete="off">
+  <div style="font-size:42px;line-height:1">🔒</div>
+  <h1>Movilidad matutina</h1>
+  <p>Escribe la clave que llegó en el correo de tu compra.</p>
+  <input id="gPass" type="text" inputmode="text" autocapitalize="none" spellcheck="false" placeholder="Tu clave" aria-label="Clave">
+  <button class="btn" type="submit" id="gBtn">Entrar</button>
+  <div class="gerr" id="gErr" role="alert"></div>
+  <small>Se pide una sola vez.</small>
+ </form>
+</div>
+<script>
+(function(){
+var KEYP="mov7-clave-esp";
+var S=crypto&&crypto.subtle;
+function err(t){document.getElementById("gErr").textContent=t}
+async function derive(pass,salt){
+  var base=await S.importKey("raw",new TextEncoder().encode(pass),"PBKDF2",false,["deriveKey"]);
+  return S.deriveKey({name:"PBKDF2",salt:salt,iterations:250000,hash:"SHA-256"},base,{name:"AES-GCM",length:256},false,["decrypt"]);
+}
+async function unlock(pass){
+  var r=await fetch("d.bin",{cache:"no-cache"}); var all=new Uint8Array(await r.arrayBuffer());
+  var k=await derive(pass,all.slice(0,16));
+  var plain=await S.decrypt({name:"AES-GCM",iv:all.slice(16,28)},k,all.slice(28));
+  window.DATA=JSON.parse(new TextDecoder().decode(plain));
+  try{localStorage.setItem(KEYP,pass)}catch(e){}
+  (function go(){ if(typeof window.START==="function"){ window.START(); document.getElementById("gate").classList.add("off"); } else setTimeout(go,30); })();
+}
+document.getElementById("gForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  var p=document.getElementById("gPass").value.trim().toLowerCase();
+  if(!p){err("Escribe la clave.");return}
+  if(!S){err("Este navegador no puede abrir la app. Prueba con Chrome o Safari actualizados.");return}
+  var b=document.getElementById("gBtn"); b.disabled=true; b.textContent="Abriendo…"; err("");
+  unlock(p).catch(function(){ err("Esa clave no es. Revisa el correo de tu compra."); try{localStorage.removeItem(KEYP)}catch(e){} }).finally(function(){ b.disabled=false; b.textContent="Entrar"; });
+});
+var saved=null; try{saved=localStorage.getItem(KEYP)}catch(e){}
+if(saved&&S){ unlock(saved).catch(function(){ try{localStorage.removeItem(KEYP)}catch(e){} }); }
+})();
+</script>
+
+<script>
+window.START=function(){
+var D=window.DATA,T=D.t,$=function(id){return document.getElementById(id)};
+var KEY="mov7-estado-esp";
+var est=(function(){try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&s.dias)return s}catch(e){}return {dias:{}}})();
+function save(){try{localStorage.setItem(KEY,JSON.stringify(est))}catch(e){}}
+function h(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function fecha(d){d=d||new Date();return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2)}
+function total(){return Object.keys(est.dias).length}
+function racha(){var n=0,d=new Date();if(!est.dias[fecha(d)])d.setDate(d.getDate()-1);while(est.dias[fecha(d)]){n++;d.setDate(d.getDate()-1)}return n}
+function go(id){["s-ini","s-play","s-fin"].forEach(function(s){$(s).classList.toggle("on",s===id)});window.scrollTo(0,0)}
+
+function inicio(){
+  var t=total(),hecho=!!est.dias[fecha()],cad="";
+  for(var i=0;i<30;i++)cad+='<i class="'+(i<t?"on":"")+'"></i>';
+  $("s-ini").innerHTML=
+   '<div class="marca">'+h(T.marca)+'</div>'+
+   '<h1 style="font-size:32px;margin:8px 0 8px">'+h(T.titulo)+'</h1>'+
+   '<p class="sub">'+h(T.intro)+'</p>'+
+   (hecho?'<div class="hoy"><svg><use href="#i-check"/></svg>'+h(T.hoyHecho)+'</div>':'')+
+   '<div class="nums"><div class="num"><b>'+racha()+'</b><span>'+h(T.racha)+'</span></div><div class="num"><b>'+t+'</b><span>'+h(T.total)+'</span></div></div>'+
+   '<div style="display:grid;gap:10px;margin-top:16px">'+
+    '<button class="btn" id="bFull"><svg><use href="#i-play"/></svg>'+h(T.empezar)+'</button>'+
+    '<button class="btn sec" id="bExp"><svg><use href="#i-bolt"/></svg>'+h(T.expres)+'</button>'+
+    '<p class="sub" style="font-size:15px">'+h(T.expresNota)+'</p>'+
+   '</div>'+
+   '<div class="card"><h3>'+h(T.cadena)+'</h3><p class="sub" style="font-size:15px;margin-top:4px">'+h(T.cadenaNota)+'</p><div class="cad">'+cad+'</div></div>'+
+   '<div class="card"><h3>Los 7</h3><ul class="lista">'+D.ej.map(function(e,i){return '<li><span class="n">'+(i+1)+'</span><span><b>'+h(e.nombre)+'.</b> '+h(e.como)+'</span></li>'}).join("")+'</ul></div>'+
+   '<div class="card"><h3>'+h(T.ayudaT)+'</h3><ul class="lista">'+T.ayuda.map(function(a){return '<li><span class="n">·</span><span>'+h(a)+'</span></li>'}).join("")+'</ul><p class="sub" style="font-size:14px;margin-top:12px">'+h(T.guardado)+'</p></div>';
+  $("bFull").onclick=function(){empezar(false)};
+  $("bExp").onclick=function(){empezar(true)};
+  go("s-ini");
+}
+
+/* ===== reproductor ===== */
+var lista=[],idx=0,resta=60,tic=null,pausa=false,expres=false,lock=null,ac=null;
+var C=2*Math.PI*56;
+function beep(){try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();var o=ac.createOscillator(),g=ac.createGain();o.frequency.value=880;g.gain.setValueAtTime(.0001,ac.currentTime);g.gain.exponentialRampToValueAtTime(.25,ac.currentTime+.02);g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+.35);o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+.4)}catch(e){}try{navigator.vibrate&&navigator.vibrate(200)}catch(e){}}
+function despierto(on){try{if(on&&navigator.wakeLock){navigator.wakeLock.request("screen").then(function(l){lock=l}).catch(function(){})}else if(!on&&lock){lock.release();lock=null}}catch(e){}}
+function empezar(ex){expres=ex;lista=ex?D.ej.filter(function(e){return D.expres.indexOf(e.n)>-1}):D.ej.slice();idx=0;pausa=false;despierto(true);try{ac=ac||new (window.AudioContext||window.webkitAudioContext)()}catch(e){}paso()}
+function paso(){
+  var e=lista[idx];resta=60;
+  $("s-play").innerHTML=
+   '<div class="ptop"><button id="pSalir">✕ '+h(T.salir)+'</button><span class="sub" style="font-size:15px;font-weight:700">'+(idx+1)+' '+h(T.de)+' '+lista.length+'</span></div>'+
+   '<div class="pasos">'+lista.map(function(x,i){return '<i class="'+(i<idx?"ok":i===idx?"act":"")+'"></i>'}).join("")+'</div>'+
+   '<span class="lugar">'+h(T.lugar[e.lugar])+'</span>'+
+   '<img class="pimg" src="img/'+e.img+'.jpg" alt="'+h(e.nombre)+'">'+
+   '<h2 class="pnom">'+h(e.nombre)+'</h2>'+
+   '<p class="pcomo">'+h(e.como)+'</p>'+
+   '<div class="reloj"><svg viewBox="0 0 132 132"><circle class="tr" cx="66" cy="66" r="56"/><circle class="pr" id="pr" cx="66" cy="66" r="56" stroke-dasharray="'+C+'" stroke-dashoffset="0"/></svg><b id="seg">60</b></div>'+
+   '<div class="ctrl"><button class="btn sec" id="pAnt"'+(idx===0?' disabled style="opacity:.4"':'')+'>'+h(T.atras)+'</button><button class="btn" id="pPau">'+h(T.pausa)+'</button><button class="btn sec" id="pSig">'+h(T.saltear)+'</button></div>';
+  $("pSalir").onclick=function(){parar();despierto(false);inicio()};
+  $("pAnt").onclick=function(){if(idx>0){idx--;parar();paso()}};
+  $("pSig").onclick=function(){siguiente()};
+  $("pPau").onclick=function(){pausa=!pausa;this.textContent=pausa?T.seguir:T.pausa};
+  go("s-play");parar();pausa=false;
+  tic=setInterval(function(){if(pausa)return;resta--;$("seg").textContent=resta;$("pr").style.strokeDashoffset=C*(1-resta/60);if(resta<=0){beep();siguiente()}},1000);
+}
+function parar(){if(tic){clearInterval(tic);tic=null}}
+function siguiente(){parar();if(idx<lista.length-1){idx++;paso()}else terminar()}
+function terminar(){
+  despierto(false);est.dias[fecha()]=expres?"x":1;save();
+  var n=total();
+  $("s-fin").innerHTML='<div class="fin"><div class="sello"><svg><use href="#i-check"/></svg></div><h1 style="font-size:34px">'+h(T.fin)+'</h1><p class="sub" style="margin:10px 0 22px;font-size:18px">'+h((expres?T.finExpres:T.finTxt).replace("{n}",n))+'</p><button class="btn" id="fVol">'+h(T.volver)+'</button></div>';
+  $("fVol").onclick=inicio;go("s-fin");
+}
+inicio();
+};
+</script>
+
+</body>
+</html>
